@@ -4,9 +4,14 @@
     {
         FileHandler fileHandler = new FileHandler();
 
-        public User(string name, string streetAddress, string postalCode, string county, string phoneNumber, string email)
+        public User()
         {
-            UserID = Guid.NewGuid();
+
+        }
+
+        public User(Guid userID, string name, string streetAddress, string postalCode, string county, string phoneNumber, string email)
+        {
+            UserID = userID;
             Name = name;
             StreetAddress = streetAddress;
             PostalCode = postalCode;
@@ -25,6 +30,8 @@
         
         public void Create()
         {
+            UserID = Guid.NewGuid();
+
             string[] userInfo = new string[]
             {
                 UserID.ToString(),

@@ -43,6 +43,7 @@
             this.lblEmail = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.lblMessage = new System.Windows.Forms.Label();
+            this.lblGuid = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtName
@@ -55,7 +56,7 @@
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(40, 15);
+            this.lblName.Location = new System.Drawing.Point(40, 13);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(40, 15);
             this.lblName.TabIndex = 1;
@@ -64,7 +65,7 @@
             // lblStreetAddress
             // 
             this.lblStreetAddress.AutoSize = true;
-            this.lblStreetAddress.Location = new System.Drawing.Point(40, 53);
+            this.lblStreetAddress.Location = new System.Drawing.Point(40, 50);
             this.lblStreetAddress.Name = "lblStreetAddress";
             this.lblStreetAddress.Size = new System.Drawing.Size(65, 15);
             this.lblStreetAddress.TabIndex = 3;
@@ -80,7 +81,7 @@
             // lblPostalCode
             // 
             this.lblPostalCode.AutoSize = true;
-            this.lblPostalCode.Location = new System.Drawing.Point(40, 91);
+            this.lblPostalCode.Location = new System.Drawing.Point(40, 88);
             this.lblPostalCode.Name = "lblPostalCode";
             this.lblPostalCode.Size = new System.Drawing.Size(76, 15);
             this.lblPostalCode.TabIndex = 5;
@@ -96,7 +97,7 @@
             // lblCounty
             // 
             this.lblCounty.AutoSize = true;
-            this.lblCounty.Location = new System.Drawing.Point(40, 129);
+            this.lblCounty.Location = new System.Drawing.Point(40, 126);
             this.lblCounty.Name = "lblCounty";
             this.lblCounty.Size = new System.Drawing.Size(45, 15);
             this.lblCounty.TabIndex = 7;
@@ -112,7 +113,7 @@
             // lblPhoneNumber
             // 
             this.lblPhoneNumber.AutoSize = true;
-            this.lblPhoneNumber.Location = new System.Drawing.Point(40, 167);
+            this.lblPhoneNumber.Location = new System.Drawing.Point(40, 164);
             this.lblPhoneNumber.Name = "lblPhoneNumber";
             this.lblPhoneNumber.Size = new System.Drawing.Size(97, 15);
             this.lblPhoneNumber.TabIndex = 9;
@@ -148,7 +149,7 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(40, 205);
+            this.lblEmail.Location = new System.Drawing.Point(40, 202);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(36, 15);
             this.lblEmail.TabIndex = 9;
@@ -174,11 +175,20 @@
             this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblMessage.Visible = false;
             // 
+            // lblGuid
+            // 
+            this.lblGuid.AutoSize = true;
+            this.lblGuid.Location = new System.Drawing.Point(20, 1);
+            this.lblGuid.Name = "lblGuid";
+            this.lblGuid.Size = new System.Drawing.Size(0, 15);
+            this.lblGuid.TabIndex = 14;
+            // 
             // UserEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(312, 320);
+            this.Controls.Add(this.lblGuid);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.txtEmail);
@@ -218,5 +228,6 @@
         private Label lblEmail;
         private TextBox txtEmail;
         private Label lblMessage;
+        private Label lblGuid;
     }
 }
