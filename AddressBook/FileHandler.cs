@@ -1,4 +1,6 @@
-﻿namespace AddressBook
+﻿using Microsoft.VisualBasic.ApplicationServices;
+
+namespace AddressBook
 {
     public class FileHandler
     {
@@ -12,6 +14,12 @@
             if (!Directory.Exists(_folderPath))
             {
                 Directory.CreateDirectory(_folderPath);
+
+                if (!File.Exists($"{_folderPath}\\{_fileName}"))
+                {
+                    FileStream userFile = File.Create($"{_folderPath}\\{_fileName}");
+                    userFile.Close();
+                }
             }
         }
 

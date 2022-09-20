@@ -149,7 +149,7 @@ namespace AddressBook
                 switch ((sender as TextBox).Name)
                 {
                     case "txtEmail":
-                        txtName.ForeColor = TextBox.DefaultForeColor;
+                        txtEmail.ForeColor = TextBox.DefaultForeColor;
                         break;
 
                     case "txtName":
