@@ -1,0 +1,8 @@
+4a2932f4-f5f3-4f53-b1eb-a997d555d54d,Robin Andersson,Gatan 99,163 46,Spånga,0920320,robin.andersson@me.com
+87663454-053d-4486-97e2-25d1a3df55fc,Bengt Karlsson,Snedgatan 42,123 45,Klippan,070235785,bengt.karlsson@bengan.se
+44d9ff78-d5e0-4322-86d9-9c2b2ca9875f,Kalle Karlsson,Långvägen 33,891 82,Dalen,08-4865100,kalle@karlsson.se
+971e4dae-8737-4d82-a479-f52edb460f02,Bertil Svensson,Bertilgatan 24,812 23,Falun,0708945321,bertil.svensson@live.se
+51344a4b-e835-4c71-95ff-650f00a13ccc,Lisa Jönsson,Murgatan 123,738 72,Haninge,0708524695,lisa@asdf.se
+2f78df5e-bf2e-4511-a994-2c018ce73670,Ragnar Lodbrok,Valhallavägen 27,170 42,Stockholm,08-1337 999,ragnar@viking.se
+27bee24f-8798-4769-bb80-cc011902bce7,Björn Borg,Östgötagatan 99,167 45,Stockholm,08-123 456,bjorn@borg.se
+53928015-bf20-4adf-a001-7fe730f0bad2,Åke Bengtsson,Gammelvägen 12,777 42,Falun,073887743,ake.bengtsson@norrland.se
