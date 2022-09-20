@@ -50,7 +50,7 @@
             }
         }
 
-        public List<string> ReadAllRowsFromFile()
+        public List<string> GetAllRowsFromFile()
         {
             string filePath = $"{_folderPath}\\{_fileName}";
             string row;
@@ -67,7 +67,7 @@
             return rows;
         }
 
-        public List<string> ReadAllRowsFromFile(string searchCritera)
+        public List<string> GetRowFromSearchCritera(string searchCritera, int index)
         {
             string filePath = $"{_folderPath}\\{_fileName}";
             string row;
@@ -80,34 +80,58 @@
                     row.ToLower();
                     string[] values = row.ToLower().Split(',');
 
-                    for (int i = 0; i < values.Length - 1; i++)
+                    if (values[index].Contains(searchCritera))
                     {
-                        if (values[i+1].Contains(searchCritera))
-                        {
-                            matches.Add(row);
-                            break;
-                        }
+                        matches.Add(row);
+                        break;
                     }
-
-                    //break;
                 }
             }
 
             return matches;
         }
 
-        public void UpdateRow(User user)
+        //public List<string> ReadAllRowsFromFile(string searchCritera)
+        //{
+        //    string filePath = $"{_folderPath}\\{_fileName}";
+        //    string row;
+        //    List<string> matches = new List<string>();
+
+        //    using (StreamReader sr = new StreamReader(filePath))
+        //    {
+        //        while ((row = sr.ReadLine()) != null)
+        //        {
+        //            row.ToLower();
+        //            string[] values = row.ToLower().Split(',');
+
+        //            for (int i = 0; i < values.Length - 1; i++)
+        //            {
+        //                if (values[i+1].Contains(searchCritera))
+        //                {
+        //                    matches.Add(row);
+        //                    break;
+        //                }
+        //            }
+
+        //            //break;
+        //        }
+        //    }
+
+        //    return matches;
+        //}
+
+        public void UpdateRow(Guid userID, string? newText)
         {
+            List<string> updatedRows = new List<string>();
             string filePath = $"{_folderPath}\\{_fileName}";
             string[] rows = File.ReadAllLines(filePath);
-            string newText = $"{user.UserID.ToString()},{user.Name},{user.StreetAddress},{user.PostalCode},{user.County},{user.PhoneNumber},{user.Email}";
             int rowToUpdate = 0;
 
             foreach (string row in rows)
             {
                 string[] values = row.Split(',');
 
-                if (values[0].Contains(user.UserID.ToString()))
+                if (values[0].Contains(userID.ToString()))
                 {
                     break;
                 }
@@ -119,28 +143,15 @@
 
             rows[rowToUpdate] = newText;
 
-            File.WriteAllLines(filePath, rows);
+            foreach (string row in rows)
+            {
+                if (!string.IsNullOrEmpty(row))
+                {
+                    updatedRows.Add(row);
+                }
+            }
 
-            //using (StreamReader sr = new StreamReader())
-            //{
-            //    string row;
-
-            //    while ((row = sr.ReadLine()) != null)
-            //    {
-            //        string[] values = row.Split(',');
-            //        if (values[0] == user.UserID.ToString())
-            //        {
-
-            //        }
-            //    }
-            //}
-        }
-
-        static void lineChanger(string newText, string fileName, int line_to_edit)
-        {
-            string[] arrLine = File.ReadAllLines(fileName);
-            arrLine[line_to_edit] = newText;
-            File.WriteAllLines(fileName, arrLine);
+            File.WriteAllLines(filePath, updatedRows);
         }
     }
 }

@@ -206,6 +206,7 @@
             this.Controls.Add(this.txtName);
             this.Name = "UserEditorForm";
             this.Text = "Skapa användare";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserEditorForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -10,8 +10,24 @@ namespace AddressBook
         public SearchPageForm()
         {
             InitializeComponent();
-
             UpdateAddressGrid();
+            lstBoxUserInfo.Items.Clear();
+            comboBoxSearchCriteria.SelectedIndex = 0;
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchText = txtSearch.Text.ToLower();
+            List<string> matches = fileHandler.GetRowFromSearchCritera(searchText, comboBoxSearchCriteria.SelectedIndex + 1);
+
+            if (txtSearch.Text.Equals(" "))
+            {
+                UpdateAddressGrid();
+            }
+            else
+            {
+                UpdateAddressGrid(matches);
+            }
         }
 
         private void btnCreateUser_Click(object sender, EventArgs e)
@@ -25,42 +41,47 @@ namespace AddressBook
             
             string guid = dataGridAddresses.CurrentRow.Cells[0].Value.ToString();
             User user = new User(Guid.Parse(dataGridAddresses.CurrentRow.Cells[0].Value.ToString()),
-                                 dataGridAddresses.CurrentRow.Cells[1].Value.ToString(),
-                                 dataGridAddresses.CurrentRow.Cells[2].Value.ToString(),
-                                 dataGridAddresses.CurrentRow.Cells[3].Value.ToString(),
-                                 dataGridAddresses.CurrentRow.Cells[4].Value.ToString(),
-                                 dataGridAddresses.CurrentRow.Cells[5].Value.ToString(),
-                                 dataGridAddresses.CurrentRow.Cells[6].Value.ToString());
+                                            dataGridAddresses.CurrentRow.Cells[1].Value.ToString(),
+                                            dataGridAddresses.CurrentRow.Cells[2].Value.ToString(),
+                                            dataGridAddresses.CurrentRow.Cells[3].Value.ToString(),
+                                            dataGridAddresses.CurrentRow.Cells[4].Value.ToString(),
+                                            dataGridAddresses.CurrentRow.Cells[5].Value.ToString(),
+                                            dataGridAddresses.CurrentRow.Cells[6].Value.ToString());
 
             userEditorForm = new UserEditorForm(user);
             userEditorForm.ShowDialog();
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnDeleteUser_Click(object sender, EventArgs e)
         {
-            File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AddressBook\\users.txt");
+            User user = new User();
+            user.UserID = Guid.Parse(dataGridAddresses.CurrentRow.Cells[0].Value.ToString());
+
+            user.Delete();
+
+            UpdateAddressGrid();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void btnShowUser_Click(object sender, EventArgs e)
         {
-            string searchCriteria = txtSearchCriteria.Text.ToLower();
-            List<string> matches = fileHandler.ReadAllRowsFromFile(searchCriteria);
+            lstBoxUserInfo.Items.Clear();
 
-            dataGridAddresses.Rows.Clear();
+            for (int i = 1; i < dataGridAddresses.ColumnCount; i++)
+            {
+                lstBoxUserInfo.Items.Add($"{dataGridAddresses.Columns[i].HeaderText}: {dataGridAddresses.CurrentRow.Cells[i].Value.ToString()}");
+            }
+        }
 
-            if (txtSearchCriteria.Text.Equals(string.Empty))
-            {
-                UpdateAddressGrid();
-            }
-            else
-            {
-                UpdateAddressGrid(matches);
-            }
+        private void btnCloseProgram_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void UpdateAddressGrid()
         {
-            List<string> addresses = fileHandler.ReadAllRowsFromFile();
+            List<string> addresses = fileHandler.GetAllRowsFromFile();
+            
+            dataGridAddresses.Rows.Clear();
 
             foreach (string address in addresses)
             {
@@ -70,15 +91,28 @@ namespace AddressBook
 
         private void UpdateAddressGrid(List<string> addresses)
         {
+            dataGridAddresses.Rows.Clear();
+
             foreach (string adress in addresses)
             {
                 dataGridAddresses.Rows.Add(adress.Split(','));
             }
         }
 
-        private void btnCloseProgram_Click(object sender, EventArgs e)
+        private void comboBoxSearchCriteria_SelectedValueChanged(object sender, EventArgs e)
         {
-            this.Close();
+            ShowColumn(comboBoxSearchCriteria.SelectedIndex + 1);
+        }
+
+        private void ShowColumn(int index)
+        {
+            // Hide all columns except for 'Namn'
+            for (int i = 2; i < dataGridAddresses.Columns.Count; i++)
+            {
+                dataGridAddresses.Columns[i].Visible = false;
+            }
+
+            dataGridAddresses.Columns[index].Visible = true;
         }
     }
 }

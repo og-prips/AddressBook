@@ -1,4 +1,6 @@
-﻿namespace AddressBook
+﻿using Microsoft.VisualBasic.ApplicationServices;
+
+namespace AddressBook
 {
     public class User
     {
@@ -46,19 +48,15 @@
             fileHandler.SaveToFile(userInfo, ',');
         }
 
-        public void Read()
-        {
-
-        }
-
         public void Update()
         {
-
+            string updatedText = $"{UserID.ToString()},{Name},{StreetAddress},{PostalCode},{County},{PhoneNumber},{Email}";
+            fileHandler.UpdateRow(UserID, updatedText);
         }
 
         public void Delete()
         {
-
+            fileHandler.UpdateRow(UserID, null);
         }
     }
 }

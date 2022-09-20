@@ -21,9 +21,6 @@ namespace AddressBook
 
             user = selectedUser;
 
-            //temp
-            lblGuid.Text = user.UserID.ToString();
-
             txtName.Text = user.Name;
             txtStreetAddress.Text = user.StreetAddress;
             txtPostalCode.Text = user.PostalCode;
@@ -60,12 +57,10 @@ namespace AddressBook
                 user.PostalCode = txtPostalCode.Text;
                 user.County = txtCounty.Text;
                 user.PhoneNumber = txtPhoneNumber.Text;
-                user.Email = txtEmail.Text;
+                user.Email = txtEmail.Text.ToLower();
 
                 if (_toCreateUser)
                 {
-
-
                     user.Create();
                     
                     foreach (TextBox textBox in this.Controls.OfType<TextBox>())
@@ -77,9 +72,7 @@ namespace AddressBook
                 }
                 else
                 {
-                    FileHandler fileHandler = new FileHandler();
-                    fileHandler.UpdateRow(user);
-                    //user.Update();
+                    user.Update();
                     UpdateMessage($"Användare {user.Name} blev uppdaterad!", Color.PaleGreen);
                 }
             }
@@ -92,13 +85,16 @@ namespace AddressBook
 
         bool IsValidEmail(string email)
         {
-            var validEmail = true;
-            //email.
-            //if (email.Substring(email.IndexOf("@") + 1, email.Length - 1) == "@")
+            bool validEmail = true;
+            email = email.Trim();
 
             try
             {
                 var emailAddress = new MailAddress(email);
+                if (!emailAddress.Host.Contains('.'))
+                {
+                    return false;
+                }
             }
             catch
             {
@@ -118,6 +114,11 @@ namespace AddressBook
             lblMessage.Visible = true;
             lblMessage.Text = text;
             lblMessage.BackColor = backColor;
+        }
+
+        private void UserEditorForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
         }
     }
 }
