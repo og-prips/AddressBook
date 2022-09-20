@@ -34,59 +34,22 @@ namespace AddressBook
 
         private bool _toCreateUser;
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnAssign_Click(object sender, EventArgs e)
-        {
-            foreach (TextBox textBox in this.Controls.OfType<TextBox>())
-            {
-                if (textBox.Text == String.Empty)
-                {
-                    UpdateMessage("Var god fyll i alla fält", Color.IndianRed); 
-                    return;
-                }
-            }
-
-            if (IsValidEmail(txtEmail.Text))
-            {
-                user.Name = txtName.Text;
-                user.StreetAddress = txtStreetAddress.Text;
-                user.PostalCode = txtPostalCode.Text;
-                user.County = txtCounty.Text;
-                user.PhoneNumber = txtPhoneNumber.Text;
-                user.Email = txtEmail.Text.ToLower();
-
-                if (_toCreateUser)
-                {
-                    user.Create();
-                    
-                    foreach (TextBox textBox in this.Controls.OfType<TextBox>())
-                    {
-                        textBox.Text = String.Empty;
-                    }
-
-                    UpdateMessage($"Användare {user.Name} blev skapad!", Color.PaleGreen);
-                }
-                else
-                {
-                    user.Update();
-                    UpdateMessage($"Användare {user.Name} blev uppdaterad!", Color.PaleGreen);
-                }
-            }
-            else
-            {
-                txtEmail.ForeColor = Color.Red;
-                UpdateMessage("Epost i fel format!", Color.IndianRed);
-            }
-        }
-
-        bool IsValidEmail(string email)
+        public bool IsValidEmail(string email)
         {
             bool validEmail = true;
+            string forbiddenLetters = "åäö";
             email = email.Trim();
+
+            for (int i = 0; i < forbiddenLetters.Length; i++)
+            {
+                foreach (char c in email)
+                {
+                    if (c == forbiddenLetters[i])
+                    {
+                        return false;
+                    }
+                }
+            }
 
             try
             {
@@ -104,16 +67,99 @@ namespace AddressBook
             return validEmail;
         }
 
-        private void txtEmail_KeyDown(object sender, KeyEventArgs e)
-        {
-            txtEmail.ForeColor = TextBox.DefaultForeColor;
-        }
-
         private void UpdateMessage(string text, Color backColor)
         {
             lblMessage.Visible = true;
             lblMessage.Text = text;
             lblMessage.BackColor = backColor;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnAssign_Click(object sender, EventArgs e)
+        {
+            foreach (TextBox textBox in this.Controls.OfType<TextBox>())
+            {
+                if (textBox.Text == String.Empty)
+                {
+                    UpdateMessage("Var god fyll i alla fält", Color.IndianRed); 
+                    return;
+                }
+            }
+
+            if (!IsValidEmail(txtEmail.Text))
+            {
+                txtEmail.ForeColor = Color.Red;
+                UpdateMessage("Epost i fel format!", Color.IndianRed);
+            }
+            else if (!txtName.Text.Contains(' '))
+            {
+                txtName.ForeColor = Color.Red;
+                UpdateMessage("Var god fyll i för- och efternamn", Color.IndianRed);
+            }
+            else
+            {
+                user.Name = txtName.Text;
+                user.StreetAddress = txtStreetAddress.Text;
+                user.PostalCode = txtPostalCode.Text;
+                user.County = txtCounty.Text;
+                user.PhoneNumber = txtPhoneNumber.Text;
+                user.Email = txtEmail.Text;
+
+                if (_toCreateUser)
+                {
+                    user.Create();
+
+                    foreach (TextBox textBox in this.Controls.OfType<TextBox>())
+                    {
+                        textBox.Text = String.Empty;
+                    }
+
+                    UpdateMessage($"Användare {user.Name} blev skapad!", Color.PaleGreen);
+                }
+                else
+                {
+                    user.Update();
+                    UpdateMessage($"Användare {user.Name} blev uppdaterad!", Color.PaleGreen);
+                }
+            }
+        }
+
+        private void txtEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            txtEmail.ForeColor = TextBox.DefaultForeColor;
+        }
+
+        private void txtName_KeyDown(object sender, KeyEventArgs e)
+        {
+            txtName.ForeColor = TextBox.DefaultForeColor;
+        }
+
+        private void txtPostalCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (char.IsNumber((char)e.KeyValue))
+            {
+                e.SuppressKeyPress = false;
+            }
+            else
+            {
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void txtPhoneNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (char.IsNumber((char)e.KeyValue) || e.KeyValue.Equals(' '))
+            {
+                e.SuppressKeyPress = false;
+            }
+            else
+            {
+                e.SuppressKeyPress = true;
+            }
         }
 
         private void UserEditorForm_FormClosing(object sender, FormClosingEventArgs e)

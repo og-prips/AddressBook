@@ -268,6 +268,7 @@
             this.Controls.Add(this.btnCloseProgram);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridAddresses);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "SearchPageForm";
             this.Text = "Sök";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAddresses)).EndInit();

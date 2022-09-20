@@ -52,6 +52,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(251, 23);
             this.txtName.TabIndex = 0;
+            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtName_KeyDown);
             // 
             // lblName
             // 
@@ -93,6 +94,7 @@
             this.txtPostalCode.Name = "txtPostalCode";
             this.txtPostalCode.Size = new System.Drawing.Size(251, 23);
             this.txtPostalCode.TabIndex = 4;
+            this.txtPostalCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPostalCode_KeyDown);
             // 
             // lblCounty
             // 
@@ -157,6 +159,7 @@
             // 
             // txtEmail
             // 
+            this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txtEmail.Location = new System.Drawing.Point(30, 214);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(251, 23);
