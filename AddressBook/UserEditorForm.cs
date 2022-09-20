@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
 using System.Diagnostics.Metrics;
 using System.Net.Mail;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace AddressBook
@@ -18,7 +19,6 @@ namespace AddressBook
         public UserEditorForm(User selectedUser)
         {
             InitializeComponent();
-
             user = selectedUser;
 
             txtName.Text = user.Name;
@@ -54,7 +54,7 @@ namespace AddressBook
             try
             {
                 var emailAddress = new MailAddress(email);
-                if (!emailAddress.Host.Contains('.'))
+                if (!emailAddress.Host.Contains('.') || emailAddress.ToString().Last().Equals('.'))
                 {
                     return false;
                 }
@@ -67,18 +67,19 @@ namespace AddressBook
             return validEmail;
         }
 
+        // Update the message label to tell user current status with specified text and backcolor
         private void UpdateMessage(string text, Color backColor)
         {
             lblMessage.Visible = true;
             lblMessage.Text = text;
             lblMessage.BackColor = backColor;
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        // Either creates or updates a user, based on how the form is loaded
         private void btnAssign_Click(object sender, EventArgs e)
         {
             foreach (TextBox textBox in this.Controls.OfType<TextBox>())
@@ -128,43 +129,56 @@ namespace AddressBook
             }
         }
 
-        private void txtEmail_KeyDown(object sender, KeyEventArgs e)
+        private void UserEditorForm_KeyDown(object sender, KeyEventArgs e)
         {
-            txtEmail.ForeColor = TextBox.DefaultForeColor;
-        }
-
-        private void txtName_KeyDown(object sender, KeyEventArgs e)
-        {
-            txtName.ForeColor = TextBox.DefaultForeColor;
-        }
-
-        private void txtPostalCode_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (char.IsNumber((char)e.KeyValue))
-            {
-                e.SuppressKeyPress = false;
-            }
-            else
+            if (e.KeyValue.Equals(','))
             {
                 e.SuppressKeyPress = true;
             }
         }
 
-        private void txtPhoneNumber_KeyDown(object sender, KeyEventArgs e)
+        private void anyTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (char.IsNumber((char)e.KeyValue) || e.KeyValue.Equals(' '))
-            {
-                e.SuppressKeyPress = false;
-            }
-            else
+            if (e.KeyValue.Equals(188))
             {
                 e.SuppressKeyPress = true;
             }
-        }
+            else
+            {
+                // Either sets forecolor or restricts letter input
+                switch ((sender as TextBox).Name)
+                {
+                    case "txtEmail":
+                        txtName.ForeColor = TextBox.DefaultForeColor;
+                        break;
 
-        private void UserEditorForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
+                    case "txtName":
+                        txtName.ForeColor = TextBox.DefaultForeColor;
+                        break;
+
+                    case "txtPostalCode":
+                        if (char.IsNumber((char)e.KeyValue) || e.KeyValue.Equals(' '))
+                        {
+                            e.SuppressKeyPress = false;
+                        }
+                        else
+                        {
+                            e.SuppressKeyPress = true;
+                        }
+                        break;
+
+                    case "txtPhoneNumber":
+                        if (char.IsNumber((char)e.KeyValue) || e.KeyValue.Equals(' ') || e.KeyValue.Equals('-'))
+                        {
+                            e.SuppressKeyPress = false;
+                        }
+                        else
+                        {
+                            e.SuppressKeyPress = true;
+                        }
+                        break;
+                }
+            }
         }
     }
 }

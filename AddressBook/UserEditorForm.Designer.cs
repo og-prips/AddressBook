@@ -49,10 +49,11 @@
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(30, 24);
+            this.txtName.MaxLength = 40;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(251, 23);
             this.txtName.TabIndex = 0;
-            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtName_KeyDown);
+            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyTextBox_KeyDown);
             // 
             // lblName
             // 
@@ -75,9 +76,11 @@
             // txtStreetAddress
             // 
             this.txtStreetAddress.Location = new System.Drawing.Point(30, 62);
+            this.txtStreetAddress.MaxLength = 40;
             this.txtStreetAddress.Name = "txtStreetAddress";
             this.txtStreetAddress.Size = new System.Drawing.Size(251, 23);
             this.txtStreetAddress.TabIndex = 2;
+            this.txtStreetAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyTextBox_KeyDown);
             // 
             // lblPostalCode
             // 
@@ -91,10 +94,11 @@
             // txtPostalCode
             // 
             this.txtPostalCode.Location = new System.Drawing.Point(30, 100);
+            this.txtPostalCode.MaxLength = 40;
             this.txtPostalCode.Name = "txtPostalCode";
             this.txtPostalCode.Size = new System.Drawing.Size(251, 23);
             this.txtPostalCode.TabIndex = 4;
-            this.txtPostalCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPostalCode_KeyDown);
+            this.txtPostalCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyTextBox_KeyDown);
             // 
             // lblCounty
             // 
@@ -108,9 +112,11 @@
             // txtCounty
             // 
             this.txtCounty.Location = new System.Drawing.Point(30, 138);
+            this.txtCounty.MaxLength = 40;
             this.txtCounty.Name = "txtCounty";
             this.txtCounty.Size = new System.Drawing.Size(251, 23);
             this.txtCounty.TabIndex = 6;
+            this.txtCounty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyTextBox_KeyDown);
             // 
             // lblPhoneNumber
             // 
@@ -124,9 +130,11 @@
             // txtPhoneNumber
             // 
             this.txtPhoneNumber.Location = new System.Drawing.Point(30, 176);
+            this.txtPhoneNumber.MaxLength = 40;
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(251, 23);
             this.txtPhoneNumber.TabIndex = 8;
+            this.txtPhoneNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyTextBox_KeyDown);
             // 
             // btnCancel
             // 
@@ -161,10 +169,11 @@
             // 
             this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txtEmail.Location = new System.Drawing.Point(30, 214);
+            this.txtEmail.MaxLength = 40;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(251, 23);
             this.txtEmail.TabIndex = 10;
-            this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyDown);
+            this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyTextBox_KeyDown);
             // 
             // lblMessage
             // 
@@ -173,8 +182,9 @@
             this.lblMessage.ForeColor = System.Drawing.Color.Black;
             this.lblMessage.Location = new System.Drawing.Point(0, 295);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(312, 25);
+            this.lblMessage.Size = new System.Drawing.Size(312, 31);
             this.lblMessage.TabIndex = 13;
+            this.lblMessage.Text = "\r\n";
             this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblMessage.Visible = false;
             // 
@@ -190,7 +200,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(312, 320);
+            this.ClientSize = new System.Drawing.Size(312, 326);
             this.Controls.Add(this.lblGuid);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.lblEmail);
@@ -207,9 +217,11 @@
             this.Controls.Add(this.txtStreetAddress);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.txtName);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "UserEditorForm";
             this.Text = "Skapa användare";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserEditorForm_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserEditorForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

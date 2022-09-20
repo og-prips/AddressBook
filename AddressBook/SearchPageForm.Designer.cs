@@ -146,12 +146,16 @@
             // 
             // btnDeleteUser
             // 
+            this.btnDeleteUser.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnDeleteUser.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.btnDeleteUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Maroon;
+            this.btnDeleteUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteUser.Location = new System.Drawing.Point(20, 67);
             this.btnDeleteUser.Name = "btnDeleteUser";
             this.btnDeleteUser.Size = new System.Drawing.Size(160, 23);
             this.btnDeleteUser.TabIndex = 4;
             this.btnDeleteUser.Text = "Radera vald användare";
-            this.btnDeleteUser.UseVisualStyleBackColor = true;
+            this.btnDeleteUser.UseVisualStyleBackColor = false;
             this.btnDeleteUser.Click += new System.EventHandler(this.btnDeleteUser_Click);
             // 
             // txtSearch

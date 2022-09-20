@@ -77,6 +77,7 @@ namespace AddressBook
             this.Close();
         }
 
+        // Update address grid with all rows from file
         private void UpdateAddressGrid()
         {
             List<string> addresses = fileHandler.GetAllRowsFromFile();
@@ -89,6 +90,7 @@ namespace AddressBook
             }
         }
 
+        // Update address grid with specified list
         private void UpdateAddressGrid(List<string> addresses)
         {
             dataGridAddresses.Rows.Clear();
@@ -104,9 +106,10 @@ namespace AddressBook
             ShowColumn(comboBoxSearchCriteria.SelectedIndex + 1);
         }
 
+        // Shows the column of specified index in datagrid
         private void ShowColumn(int index)
         {
-            // Hide all columns except for 'Namn'
+            // Hide all columns except for Name Column
             for (int i = 2; i < dataGridAddresses.Columns.Count; i++)
             {
                 dataGridAddresses.Columns[i].Visible = false;

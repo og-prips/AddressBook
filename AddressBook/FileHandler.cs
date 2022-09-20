@@ -6,6 +6,7 @@
         private string _folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AddressBook";
         private string _fileName = "Users.txt";
 
+        // Checks for existing directory specified in this class, if not exists -> create
         public FileHandler()
         {
             if (!Directory.Exists(_folderPath))
@@ -50,6 +51,10 @@
             }
         }
 
+        /// <summary>
+        /// Return all rows from file to a List
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetAllRowsFromFile()
         {
             string filePath = $"{_folderPath}\\{_fileName}";
@@ -67,6 +72,12 @@
             return rows;
         }
 
+        /// <summary>
+        /// Return all rows where searchcritera matches at the specified index
+        /// </summary>
+        /// <param name="searchCritera">Text to search for</param>
+        /// <param name="index">The index of the value to search for in file</param>
+        /// <returns></returns>
         public List<string> GetRowFromSearchCritera(string searchCritera, int index)
         {
             string filePath = $"{_folderPath}\\{_fileName}";
@@ -90,6 +101,11 @@
             return matches;
         }
 
+        /// <summary>
+        /// Updates the row where specified UserID matches with a string of new text
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="newText"></param>
         public void UpdateRow(Guid userID, string newText)
         {
             List<string> updatedRows = new List<string>();
