@@ -230,7 +230,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UserEditorForm";
             this.Text = "Skapa användare";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserEditorForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

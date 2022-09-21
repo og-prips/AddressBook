@@ -46,19 +46,23 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBoxSearchCriteria = new System.Windows.Forms.ComboBox();
             this.btnCloseProgram = new System.Windows.Forms.Button();
-            this.lstBoxUserInfo = new System.Windows.Forms.ListBox();
-            this.btnShowUser = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dataGridUserInfo = new System.Windows.Forms.DataGridView();
+            this.InfoType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAddresses)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridUserInfo)).BeginInit();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCreateUser
             // 
-            this.btnCreateUser.Location = new System.Drawing.Point(14, 12);
+            this.btnCreateUser.Location = new System.Drawing.Point(62, 169);
             this.btnCreateUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCreateUser.Name = "btnCreateUser";
             this.btnCreateUser.Size = new System.Drawing.Size(200, 31);
@@ -69,7 +73,7 @@
             // 
             // btnEditUser
             // 
-            this.btnEditUser.Location = new System.Drawing.Point(14, 51);
+            this.btnEditUser.Location = new System.Drawing.Point(61, 52);
             this.btnEditUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditUser.Name = "btnEditUser";
             this.btnEditUser.Size = new System.Drawing.Size(200, 31);
@@ -91,14 +95,17 @@
             this.UserCounty,
             this.UserPhoneNumber,
             this.UserEmail});
-            this.dataGridAddresses.Location = new System.Drawing.Point(14, 328);
+            this.dataGridAddresses.Location = new System.Drawing.Point(13, 15);
             this.dataGridAddresses.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dataGridAddresses.MultiSelect = false;
             this.dataGridAddresses.Name = "dataGridAddresses";
             this.dataGridAddresses.RowHeadersWidth = 51;
             this.dataGridAddresses.RowTemplate.Height = 25;
             this.dataGridAddresses.RowTemplate.ReadOnly = true;
-            this.dataGridAddresses.Size = new System.Drawing.Size(576, 241);
+            this.dataGridAddresses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridAddresses.Size = new System.Drawing.Size(576, 230);
             this.dataGridAddresses.TabIndex = 3;
+            this.dataGridAddresses.SelectionChanged += new System.EventHandler(this.dataGridAddresses_SelectionChanged);
             // 
             // UserID
             // 
@@ -160,9 +167,9 @@
             // 
             this.btnDeleteUser.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnDeleteUser.FlatAppearance.BorderColor = System.Drawing.Color.Red;
-            this.btnDeleteUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Maroon;
+            this.btnDeleteUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnDeleteUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteUser.Location = new System.Drawing.Point(14, 90);
+            this.btnDeleteUser.Location = new System.Drawing.Point(61, 91);
             this.btnDeleteUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDeleteUser.Name = "btnDeleteUser";
             this.btnDeleteUser.Size = new System.Drawing.Size(200, 31);
@@ -173,16 +180,17 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(23, 20);
+            this.txtSearch.Location = new System.Drawing.Point(23, 28);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(239, 27);
             this.txtSearch.TabIndex = 6;
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
             // btnSearch
             // 
             this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(267, 17);
+            this.btnSearch.Location = new System.Drawing.Point(267, 25);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(31, 36);
@@ -193,7 +201,7 @@
             // lblSearchFor
             // 
             this.lblSearchFor.AutoSize = true;
-            this.lblSearchFor.Location = new System.Drawing.Point(23, 65);
+            this.lblSearchFor.Location = new System.Drawing.Point(23, 73);
             this.lblSearchFor.Name = "lblSearchFor";
             this.lblSearchFor.Size = new System.Drawing.Size(71, 20);
             this.lblSearchFor.TabIndex = 8;
@@ -203,13 +211,14 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.lblSearchFor);
+            this.panel1.Controls.Add(this.btnCreateUser);
             this.panel1.Controls.Add(this.comboBoxSearchCriteria);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.txtSearch);
-            this.panel1.Location = new System.Drawing.Point(14, 15);
+            this.panel1.Location = new System.Drawing.Point(606, 15);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(320, 131);
+            this.panel1.Size = new System.Drawing.Size(320, 230);
             this.panel1.TabIndex = 9;
             // 
             // comboBoxSearchCriteria
@@ -222,7 +231,7 @@
             "Postort",
             "Telefon-nummer",
             "Epost"});
-            this.comboBoxSearchCriteria.Location = new System.Drawing.Point(94, 61);
+            this.comboBoxSearchCriteria.Location = new System.Drawing.Point(94, 69);
             this.comboBoxSearchCriteria.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxSearchCriteria.Name = "comboBoxSearchCriteria";
             this.comboBoxSearchCriteria.Size = new System.Drawing.Size(204, 28);
@@ -231,7 +240,7 @@
             // 
             // btnCloseProgram
             // 
-            this.btnCloseProgram.Location = new System.Drawing.Point(203, 605);
+            this.btnCloseProgram.Location = new System.Drawing.Point(419, 540);
             this.btnCloseProgram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCloseProgram.Name = "btnCloseProgram";
             this.btnCloseProgram.Size = new System.Drawing.Size(183, 31);
@@ -240,60 +249,81 @@
             this.btnCloseProgram.UseVisualStyleBackColor = true;
             this.btnCloseProgram.Click += new System.EventHandler(this.btnCloseProgram_Click);
             // 
-            // lstBoxUserInfo
-            // 
-            this.lstBoxUserInfo.FormattingEnabled = true;
-            this.lstBoxUserInfo.ItemHeight = 20;
-            this.lstBoxUserInfo.Location = new System.Drawing.Point(234, 20);
-            this.lstBoxUserInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lstBoxUserInfo.Name = "lstBoxUserInfo";
-            this.lstBoxUserInfo.Size = new System.Drawing.Size(324, 124);
-            this.lstBoxUserInfo.TabIndex = 13;
-            // 
-            // btnShowUser
-            // 
-            this.btnShowUser.Location = new System.Drawing.Point(24, 64);
-            this.btnShowUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnShowUser.Name = "btnShowUser";
-            this.btnShowUser.Size = new System.Drawing.Size(183, 31);
-            this.btnShowUser.TabIndex = 14;
-            this.btnShowUser.Text = "Visa vald användare";
-            this.btnShowUser.UseVisualStyleBackColor = true;
-            this.btnShowUser.Click += new System.EventHandler(this.btnShowUser_Click);
-            // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.btnEditUser);
-            this.panel2.Controls.Add(this.btnCreateUser);
             this.panel2.Controls.Add(this.btnDeleteUser);
-            this.panel2.Location = new System.Drawing.Point(361, 15);
+            this.panel2.Location = new System.Drawing.Point(607, 18);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(228, 131);
+            this.panel2.Size = new System.Drawing.Size(320, 178);
             this.panel2.TabIndex = 15;
+            // 
+            // dataGridUserInfo
+            // 
+            this.dataGridUserInfo.AllowUserToAddRows = false;
+            this.dataGridUserInfo.AllowUserToDeleteRows = false;
+            this.dataGridUserInfo.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridUserInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridUserInfo.ColumnHeadersVisible = false;
+            this.dataGridUserInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.InfoType,
+            this.UserInfo});
+            this.dataGridUserInfo.Enabled = false;
+            this.dataGridUserInfo.Location = new System.Drawing.Point(14, 18);
+            this.dataGridUserInfo.MultiSelect = false;
+            this.dataGridUserInfo.Name = "dataGridUserInfo";
+            this.dataGridUserInfo.RowHeadersWidth = 51;
+            this.dataGridUserInfo.RowTemplate.Height = 29;
+            this.dataGridUserInfo.RowTemplate.ReadOnly = true;
+            this.dataGridUserInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridUserInfo.Size = new System.Drawing.Size(575, 178);
+            this.dataGridUserInfo.TabIndex = 17;
+            this.dataGridUserInfo.SelectionChanged += new System.EventHandler(this.dataGridUserInfo_SelectionChanged);
+            // 
+            // InfoType
+            // 
+            this.InfoType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.InfoType.HeaderText = "";
+            this.InfoType.MinimumWidth = 6;
+            this.InfoType.Name = "InfoType";
+            // 
+            // UserInfo
+            // 
+            this.UserInfo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UserInfo.HeaderText = "";
+            this.UserInfo.MinimumWidth = 6;
+            this.UserInfo.Name = "UserInfo";
             // 
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.btnShowUser);
-            this.panel3.Controls.Add(this.lstBoxUserInfo);
-            this.panel3.Location = new System.Drawing.Point(14, 155);
-            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel3.Controls.Add(this.dataGridAddresses);
+            this.panel3.Controls.Add(this.panel1);
+            this.panel3.Location = new System.Drawing.Point(12, 12);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(576, 165);
-            this.panel3.TabIndex = 16;
+            this.panel3.Size = new System.Drawing.Size(942, 266);
+            this.panel3.TabIndex = 18;
+            // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.dataGridUserInfo);
+            this.panel4.Controls.Add(this.panel2);
+            this.panel4.Location = new System.Drawing.Point(12, 301);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(942, 215);
+            this.panel4.TabIndex = 19;
             // 
             // SearchPageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(614, 663);
+            this.ClientSize = new System.Drawing.Size(972, 584);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnCloseProgram);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.dataGridAddresses);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "SearchPageForm";
@@ -302,7 +332,9 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridUserInfo)).EndInit();
             this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -319,8 +351,6 @@
         private Panel panel1;
         private Button btnCloseProgram;
         private ComboBox comboBoxSearchCriteria;
-        private ListBox lstBoxUserInfo;
-        private Button btnShowUser;
         private DataGridViewTextBoxColumn UserID;
         private DataGridViewTextBoxColumn UserName;
         private DataGridViewTextBoxColumn UserStreetAddress;
@@ -329,6 +359,10 @@
         private DataGridViewTextBoxColumn UserPhoneNumber;
         private DataGridViewTextBoxColumn UserEmail;
         private Panel panel2;
+        private DataGridView dataGridUserInfo;
+        private DataGridViewTextBoxColumn InfoType;
+        private DataGridViewTextBoxColumn UserInfo;
         private Panel panel3;
+        private Panel panel4;
     }
 }

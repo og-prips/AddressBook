@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Diagnostics;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace AddressBook
 {
@@ -11,7 +13,6 @@ namespace AddressBook
         {
             InitializeComponent();
             UpdateAddressGrid();
-            lstBoxUserInfo.Items.Clear();
             comboBoxSearchCriteria.SelectedIndex = 0;
         }
 
@@ -54,22 +55,16 @@ namespace AddressBook
 
         private void btnDeleteUser_Click(object sender, EventArgs e)
         {
-            User user = new User();
-            user.UserID = Guid.Parse(dataGridAddresses.CurrentRow.Cells[0].Value.ToString());
-
-            user.Delete();
-
-            UpdateAddressGrid();
-        }
-
-        private void btnShowUser_Click(object sender, EventArgs e)
-        {
-            lstBoxUserInfo.Items.Clear();
-
-            for (int i = 1; i < dataGridAddresses.ColumnCount; i++)
+            if (DialogResult.Yes == MessageBox.Show($"Vill du verkligen radera {dataGridAddresses.CurrentRow.Cells[1].Value}?", "Radera användare", MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2))
             {
-                lstBoxUserInfo.Items.Add($"{dataGridAddresses.Columns[i].HeaderText}: {dataGridAddresses.CurrentRow.Cells[i].Value.ToString()}");
+                User user = new User();
+                user.UserID = Guid.Parse(dataGridAddresses.CurrentRow.Cells[0].Value.ToString());
+
+                user.Delete();
+
+                UpdateAddressGrid();
             }
+
         }
 
         private void btnCloseProgram_Click(object sender, EventArgs e)
@@ -80,9 +75,11 @@ namespace AddressBook
         // Update address grid with all rows from file
         private void UpdateAddressGrid()
         {
+            //_hasClearedDataGrid = true;
             List<string> addresses = fileHandler.GetAllRowsFromFile();
             
             dataGridAddresses.Rows.Clear();
+            Debug.Print($"rowcount: {dataGridAddresses.RowCount}");
 
             foreach (string address in addresses)
             {
@@ -116,6 +113,31 @@ namespace AddressBook
             }
 
             dataGridAddresses.Columns[index].Visible = true;
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(188))
+            {
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void dataGridAddresses_SelectionChanged(object sender, EventArgs e)
+        {
+            dataGridUserInfo.Rows.Clear();
+
+            for (int i = 1; i < dataGridAddresses.ColumnCount; i++)
+            {
+                string userInfo = $"{dataGridAddresses.Columns[i].HeaderText},{dataGridAddresses.CurrentRow.Cells[i].Value.ToString()}";
+
+                dataGridUserInfo.Rows.Add(userInfo.Split(','));
+            }
+        }
+
+        private void dataGridUserInfo_SelectionChanged(object sender, EventArgs e)
+        {
+            dataGridUserInfo.ClearSelection();
         }
     }
 }

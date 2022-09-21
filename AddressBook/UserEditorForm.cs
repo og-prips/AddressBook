@@ -129,14 +129,6 @@ namespace AddressBook
             }
         }
 
-        private void UserEditorForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyValue.Equals(','))
-            {
-                e.SuppressKeyPress = true;
-            }
-        }
-
         private void anyTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue.Equals(188))
