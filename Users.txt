@@ -1,4 +1,4 @@
-4a2932f4-f5f3-4f53-b1eb-a997d555d54d,Robin Andersson,Gatan 99,163 46,Spånga,0920320,robin.andersson@me.com
+4a2932f4-f5f3-4f53-b1eb-a997d555d54d,Robin Andersson,Gatan 999,163 46,Spånga,09203200,robin.andersson@me.com
 87663454-053d-4486-97e2-25d1a3df55fc,Bengt Karlsson,Snedgatan 42,123 45,Klippan,070235785,bengt.karlsson@bengan.se
 44d9ff78-d5e0-4322-86d9-9c2b2ca9875f,Kalle Karlsson,Långvägen 33,891 82,Dalen,08-4865100,kalle@karlsson.se
 971e4dae-8737-4d82-a479-f52edb460f02,Bertil Svensson,Bertilgatan 24,812 23,Falun,0708945321,bertil.svensson@live.se
@@ -6,3 +6,10 @@
 2f78df5e-bf2e-4511-a994-2c018ce73670,Ragnar Lodbrok,Valhallavägen 27,170 42,Stockholm,08-1337 999,ragnar@viking.se
 27bee24f-8798-4769-bb80-cc011902bce7,Björn Borg,Östgötagatan 99,167 45,Stockholm,08-123 456,bjorn@borg.se
 53928015-bf20-4adf-a001-7fe730f0bad2,Åke Bengtsson,Gammelvägen 12,777 42,Falun,073887743,ake.bengtsson@norrland.se
+df5493bf-ffe7-4abe-953e-0a8cfbcbc3c4,Jacob J,Göteborgsgatan 10,111 22,Göteborg,123 123 999,j@j.j
+9ef3d4c0-5a58-4ef8-bab4-11a34f972db3,Martin Beck,Becksvängen 12,345 54,Kvarteret Beck,08-99 123 91,beck@haber.se
+86c6a7f4-33dd-416c-af81-87bc430c90fc,Gunvald Larsson,Narvavägen 59,144 42,Östermalm,072-089 28 28,gunnar@persbrandt.se
+7aceafc9-2e26-4396-a73c-06d0ef285753,Ingvar Hirdwall,Becksvängen 12,345 54,Beckan,08-782 476 22,grannen@i.beck.org
+ac48e841-486c-4930-b154-1130bf8d2bd0,Walter White,Kristallgatan 88,1337,Anonymt,+457-200 999 2102,walter.white@lab.org
+cceb022e-b0bb-4ea6-995c-d3eb66e9dedd,Saul Goodman,Advokatgränden 16,420,Albuquerque NM,505-842-5662,bettercaul@saul.net
+e8aed0f8-df1e-4c57-b34d-4524162e2f9d,Jönsson Ligan,Jönnsongatan,918 23,Falun,08-945 23 32,jonsson@ligan.se

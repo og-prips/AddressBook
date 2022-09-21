@@ -1,6 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
 
 namespace AddressBook
 {
@@ -16,7 +14,20 @@ namespace AddressBook
             comboBoxSearchCriteria.SelectedIndex = 0;
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        // Shows the column of specified index in datagrid
+        private void ShowColumn(int index)
+        {
+            // Hide all columns except for Name Column
+            for (int i = 2; i < dataGridAddresses.Columns.Count; i++)
+            {
+                dataGridAddresses.Columns[i].Visible = false;
+            }
+
+            dataGridAddresses.Columns[index].Visible = true;
+        }
+
+        // Search for user and update datagrid
+        private void SearchUser()
         {
             string searchText = txtSearch.Text.ToLower();
             List<string> matches = fileHandler.GetRowFromSearchCritera(searchText, comboBoxSearchCriteria.SelectedIndex + 1);
@@ -29,6 +40,37 @@ namespace AddressBook
             {
                 UpdateAddressGrid(matches);
             }
+        }
+
+        // Update address grid with all rows from file
+        private void UpdateAddressGrid()
+        {
+            //_hasClearedDataGrid = true;
+            List<string> addresses = fileHandler.GetAllRowsFromFile();
+
+            dataGridAddresses.Rows.Clear();
+            Debug.Print($"rowcount: {dataGridAddresses.RowCount}");
+
+            foreach (string address in addresses)
+            {
+                dataGridAddresses.Rows.Add(address.Split(','));
+            }
+        }
+
+        // Update address grid with specified list
+        private void UpdateAddressGrid(List<string> addresses)
+        {
+            dataGridAddresses.Rows.Clear();
+
+            foreach (string adress in addresses)
+            {
+                dataGridAddresses.Rows.Add(adress.Split(','));
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            SearchUser();
         }
 
         private void btnCreateUser_Click(object sender, EventArgs e)
@@ -72,55 +114,9 @@ namespace AddressBook
             this.Close();
         }
 
-        // Update address grid with all rows from file
-        private void UpdateAddressGrid()
-        {
-            //_hasClearedDataGrid = true;
-            List<string> addresses = fileHandler.GetAllRowsFromFile();
-            
-            dataGridAddresses.Rows.Clear();
-            Debug.Print($"rowcount: {dataGridAddresses.RowCount}");
-
-            foreach (string address in addresses)
-            {
-                dataGridAddresses.Rows.Add(address.Split(','));
-            }
-        }
-
-        // Update address grid with specified list
-        private void UpdateAddressGrid(List<string> addresses)
-        {
-            dataGridAddresses.Rows.Clear();
-
-            foreach (string adress in addresses)
-            {
-                dataGridAddresses.Rows.Add(adress.Split(','));
-            }
-        }
-
         private void comboBoxSearchCriteria_SelectedValueChanged(object sender, EventArgs e)
         {
             ShowColumn(comboBoxSearchCriteria.SelectedIndex + 1);
-        }
-
-        // Shows the column of specified index in datagrid
-        private void ShowColumn(int index)
-        {
-            // Hide all columns except for Name Column
-            for (int i = 2; i < dataGridAddresses.Columns.Count; i++)
-            {
-                dataGridAddresses.Columns[i].Visible = false;
-            }
-
-            dataGridAddresses.Columns[index].Visible = true;
-        }
-
-        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyValue.Equals(188))
-            {
-                e.SuppressKeyPress = true;
-            }
         }
 
         private void dataGridAddresses_SelectionChanged(object sender, EventArgs e)
@@ -138,6 +134,27 @@ namespace AddressBook
         private void dataGridUserInfo_SelectionChanged(object sender, EventArgs e)
         {
             dataGridUserInfo.ClearSelection();
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SearchUser();
+            }
+        }
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals(','))
+            {
+                e.Handled = true;
+            }
+
+            //if (e.KeyChar.Equals(Keys.Enter))
+            //{
+            //    MessageBox.Show("tjo");
+            //}
         }
     }
 }

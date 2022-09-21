@@ -48,105 +48,99 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(34, 32);
-            this.txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtName.Location = new System.Drawing.Point(30, 24);
             this.txtName.MaxLength = 40;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(286, 27);
+            this.txtName.Size = new System.Drawing.Size(251, 23);
             this.txtName.TabIndex = 0;
-            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyTextBox_KeyDown);
+            this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.anyTextBox_KeyPress);
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(46, 17);
+            this.lblName.Location = new System.Drawing.Point(40, 9);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(49, 20);
+            this.lblName.Size = new System.Drawing.Size(40, 15);
             this.lblName.TabIndex = 1;
             this.lblName.Text = "Namn";
             // 
             // lblStreetAddress
             // 
             this.lblStreetAddress.AutoSize = true;
-            this.lblStreetAddress.Location = new System.Drawing.Point(46, 67);
+            this.lblStreetAddress.Location = new System.Drawing.Point(40, 50);
             this.lblStreetAddress.Name = "lblStreetAddress";
-            this.lblStreetAddress.Size = new System.Drawing.Size(82, 20);
+            this.lblStreetAddress.Size = new System.Drawing.Size(65, 15);
             this.lblStreetAddress.TabIndex = 3;
             this.lblStreetAddress.Text = "Gatuadress";
             // 
             // txtStreetAddress
             // 
-            this.txtStreetAddress.Location = new System.Drawing.Point(34, 83);
-            this.txtStreetAddress.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtStreetAddress.Location = new System.Drawing.Point(30, 68);
             this.txtStreetAddress.MaxLength = 40;
             this.txtStreetAddress.Name = "txtStreetAddress";
-            this.txtStreetAddress.Size = new System.Drawing.Size(286, 27);
+            this.txtStreetAddress.Size = new System.Drawing.Size(251, 23);
             this.txtStreetAddress.TabIndex = 2;
-            this.txtStreetAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyTextBox_KeyDown);
+            this.txtStreetAddress.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.anyTextBox_KeyPress);
             // 
             // lblPostalCode
             // 
             this.lblPostalCode.AutoSize = true;
-            this.lblPostalCode.Location = new System.Drawing.Point(46, 117);
+            this.lblPostalCode.Location = new System.Drawing.Point(40, 94);
             this.lblPostalCode.Name = "lblPostalCode";
-            this.lblPostalCode.Size = new System.Drawing.Size(91, 20);
+            this.lblPostalCode.Size = new System.Drawing.Size(76, 15);
             this.lblPostalCode.TabIndex = 5;
             this.lblPostalCode.Text = "Postnummer";
             // 
             // txtPostalCode
             // 
-            this.txtPostalCode.Location = new System.Drawing.Point(34, 133);
-            this.txtPostalCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPostalCode.Location = new System.Drawing.Point(30, 112);
             this.txtPostalCode.MaxLength = 40;
             this.txtPostalCode.Name = "txtPostalCode";
-            this.txtPostalCode.Size = new System.Drawing.Size(286, 27);
+            this.txtPostalCode.Size = new System.Drawing.Size(251, 23);
             this.txtPostalCode.TabIndex = 4;
-            this.txtPostalCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyTextBox_KeyDown);
+            this.txtPostalCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.anyTextBox_KeyPress);
             // 
             // lblCounty
             // 
             this.lblCounty.AutoSize = true;
-            this.lblCounty.Location = new System.Drawing.Point(46, 168);
+            this.lblCounty.Location = new System.Drawing.Point(40, 138);
             this.lblCounty.Name = "lblCounty";
-            this.lblCounty.Size = new System.Drawing.Size(55, 20);
+            this.lblCounty.Size = new System.Drawing.Size(45, 15);
             this.lblCounty.TabIndex = 7;
             this.lblCounty.Text = "Postort";
             // 
             // txtCounty
             // 
-            this.txtCounty.Location = new System.Drawing.Point(34, 184);
-            this.txtCounty.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtCounty.Location = new System.Drawing.Point(30, 156);
             this.txtCounty.MaxLength = 40;
             this.txtCounty.Name = "txtCounty";
-            this.txtCounty.Size = new System.Drawing.Size(286, 27);
+            this.txtCounty.Size = new System.Drawing.Size(251, 23);
             this.txtCounty.TabIndex = 6;
-            this.txtCounty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyTextBox_KeyDown);
+            this.txtCounty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.anyTextBox_KeyPress);
             // 
             // lblPhoneNumber
             // 
             this.lblPhoneNumber.AutoSize = true;
-            this.lblPhoneNumber.Location = new System.Drawing.Point(46, 219);
+            this.lblPhoneNumber.Location = new System.Drawing.Point(40, 182);
             this.lblPhoneNumber.Name = "lblPhoneNumber";
-            this.lblPhoneNumber.Size = new System.Drawing.Size(119, 20);
+            this.lblPhoneNumber.Size = new System.Drawing.Size(97, 15);
             this.lblPhoneNumber.TabIndex = 9;
             this.lblPhoneNumber.Text = "Telefon-nummer";
             // 
             // txtPhoneNumber
             // 
-            this.txtPhoneNumber.Location = new System.Drawing.Point(34, 235);
-            this.txtPhoneNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPhoneNumber.Location = new System.Drawing.Point(30, 200);
             this.txtPhoneNumber.MaxLength = 40;
             this.txtPhoneNumber.Name = "txtPhoneNumber";
-            this.txtPhoneNumber.Size = new System.Drawing.Size(286, 27);
+            this.txtPhoneNumber.Size = new System.Drawing.Size(251, 23);
             this.txtPhoneNumber.TabIndex = 8;
-            this.txtPhoneNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyTextBox_KeyDown);
+            this.txtPhoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.anyTextBox_KeyPress);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(34, 339);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCancel.Location = new System.Drawing.Point(30, 285);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(128, 31);
+            this.btnCancel.Size = new System.Drawing.Size(112, 23);
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Avbryt";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -154,10 +148,9 @@
             // 
             // btnAssign
             // 
-            this.btnAssign.Location = new System.Drawing.Point(193, 339);
-            this.btnAssign.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAssign.Location = new System.Drawing.Point(169, 285);
             this.btnAssign.Name = "btnAssign";
-            this.btnAssign.Size = new System.Drawing.Size(128, 31);
+            this.btnAssign.Size = new System.Drawing.Size(112, 23);
             this.btnAssign.TabIndex = 12;
             this.btnAssign.Text = "Skapa";
             this.btnAssign.UseVisualStyleBackColor = true;
@@ -166,31 +159,30 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(46, 269);
+            this.lblEmail.Location = new System.Drawing.Point(40, 226);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(46, 20);
+            this.lblEmail.Size = new System.Drawing.Size(36, 15);
             this.lblEmail.TabIndex = 9;
             this.lblEmail.Text = "Epost";
             // 
             // txtEmail
             // 
             this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.txtEmail.Location = new System.Drawing.Point(34, 285);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtEmail.Location = new System.Drawing.Point(30, 244);
             this.txtEmail.MaxLength = 40;
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(286, 27);
+            this.txtEmail.Size = new System.Drawing.Size(251, 23);
             this.txtEmail.TabIndex = 10;
-            this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyTextBox_KeyDown);
+            this.txtEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.anyTextBox_KeyPress);
             // 
             // lblMessage
             // 
             this.lblMessage.BackColor = System.Drawing.Color.IndianRed;
             this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblMessage.ForeColor = System.Drawing.Color.Black;
-            this.lblMessage.Location = new System.Drawing.Point(0, 393);
+            this.lblMessage.Location = new System.Drawing.Point(0, 326);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(357, 41);
+            this.lblMessage.Size = new System.Drawing.Size(312, 31);
             this.lblMessage.TabIndex = 13;
             this.lblMessage.Text = "\r\n";
             this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -199,16 +191,16 @@
             // lblGuid
             // 
             this.lblGuid.AutoSize = true;
-            this.lblGuid.Location = new System.Drawing.Point(23, 1);
+            this.lblGuid.Location = new System.Drawing.Point(20, 1);
             this.lblGuid.Name = "lblGuid";
-            this.lblGuid.Size = new System.Drawing.Size(0, 20);
+            this.lblGuid.Size = new System.Drawing.Size(0, 15);
             this.lblGuid.TabIndex = 14;
             // 
             // UserEditorForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(357, 431);
+            this.ClientSize = new System.Drawing.Size(312, 356);
             this.Controls.Add(this.lblGuid);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.lblEmail);
@@ -227,7 +219,6 @@
             this.Controls.Add(this.txtName);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UserEditorForm";
             this.Text = "Skapa användare";
             this.ResumeLayout(false);

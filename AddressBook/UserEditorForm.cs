@@ -34,7 +34,7 @@ namespace AddressBook
 
         private bool _toCreateUser;
 
-        public bool IsValidEmail(string email)
+        private bool IsValidEmail(string email)
         {
             bool validEmail = true;
             string forbiddenLetters = "åäö";
@@ -74,19 +74,28 @@ namespace AddressBook
             lblMessage.Text = text;
             lblMessage.BackColor = backColor;
         }
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
         // Either creates or updates a user, based on how the form is loaded
         private void btnAssign_Click(object sender, EventArgs e)
         {
+            bool commaExists = false;
+
+            foreach (TextBox textBox in this.Controls.OfType<TextBox>())
+            {
+                textBox.Text = textBox.Text.Trim();
+
+                if (textBox.Text.Contains(','))
+                {
+                    commaExists = true;
+                    textBox.ForeColor = Color.Red;
+                }
+            }
+
             foreach (TextBox textBox in this.Controls.OfType<TextBox>())
             {
                 if (textBox.Text == String.Empty)
                 {
-                    UpdateMessage("Var god fyll i alla fält", Color.IndianRed); 
+                    UpdateMessage("Var god fyll i alla fält", Color.IndianRed);
                     return;
                 }
             }
@@ -100,6 +109,10 @@ namespace AddressBook
             {
                 txtName.ForeColor = Color.Red;
                 UpdateMessage("Var god fyll i för- och efternamn", Color.IndianRed);
+            }
+            else if (commaExists)
+            {
+                UpdateMessage("Inga kommatecken, tack!", Color.IndianRed);
             }
             else
             {
@@ -129,48 +142,28 @@ namespace AddressBook
             }
         }
 
-        private void anyTextBox_KeyDown(object sender, KeyEventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            if (e.KeyValue.Equals(188))
+            this.Close();
+        }
+
+        // Prevent inputs of commas in all textboxex and input of letters in number-only textboxes
+        private void anyTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((sender as TextBox).Name == "txtPostalCode" || (sender as TextBox).Name == "txtPhoneNumber")
             {
-                e.SuppressKeyPress = true;
-            }
-            else
-            {
-                // Either sets forecolor or restricts letter input
-                switch ((sender as TextBox).Name)
+                if (char.IsLetter(e.KeyChar))
                 {
-                    case "txtEmail":
-                        txtEmail.ForeColor = TextBox.DefaultForeColor;
-                        break;
-
-                    case "txtName":
-                        txtName.ForeColor = TextBox.DefaultForeColor;
-                        break;
-
-                    case "txtPostalCode":
-                        if (char.IsNumber((char)e.KeyValue) || e.KeyValue.Equals(' '))
-                        {
-                            e.SuppressKeyPress = false;
-                        }
-                        else
-                        {
-                            e.SuppressKeyPress = true;
-                        }
-                        break;
-
-                    case "txtPhoneNumber":
-                        if (char.IsNumber((char)e.KeyValue) || e.KeyValue.Equals(' ') || e.KeyValue.Equals('-'))
-                        {
-                            e.SuppressKeyPress = false;
-                        }
-                        else
-                        {
-                            e.SuppressKeyPress = true;
-                        }
-                        break;
+                    e.Handled = true;
                 }
             }
+
+            if (e.KeyChar.Equals(','))
+            {
+                e.Handled = true;
+            }
+            
+            (sender as TextBox).ForeColor = TextBox.DefaultForeColor;
         }
     }
 }
